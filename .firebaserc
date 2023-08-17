@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gocity-web": {
+      "hosting": {
+        "gocity-panel": [
+          "gocity-web"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gocity-web"
+  }
+}

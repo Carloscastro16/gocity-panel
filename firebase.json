@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "gocity-panel",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
