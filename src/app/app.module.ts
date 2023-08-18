@@ -7,10 +7,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { RoutesComponent } from './pages/routes/routes.component';
+import { ScoresComponent } from './pages/scores/scores.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RoutesComponent,
+    ScoresComponent,
+    SidenavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
