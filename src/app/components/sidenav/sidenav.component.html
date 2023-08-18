@@ -1,1 +1,105 @@
-<p>sidenav works!</p>
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''" *ngIf="!hideSideNav">
+    <div class="logo-container">
+        <div class="logo"><img src="assets/images/logo.png" alt=""></div>
+        <div class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+            <img src="assets/images/logo.png" alt="">
+        </div>
+    </div>
+    <ul class="sidenav-nav">
+        <ng-container>
+            <div class="top">
+                <li class="sidenav-nav-item" *ngFor="let item of navData">
+                    <a class="sidenav-nav-link" [ngClass]="collapsed ? 'padding-collapsed' : ''" [routerLink]="item.routeLink" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: false}" (click)="item.icon" matTooltip={{item.label}} [matTooltipPosition]="'right'">
+                        <img class="sidenav-link-icon" [class]="item.icon" [src]="item.icon" [ngClass]=" item.label == 'Movimientos' || item.label == 'Módulo de ventas' || item.label == 'Registro de ventas' ? 'maxw':'' ">
+                        <span class="sidenav-link-text" *ngIf="collapsed">{{item.label}}</span>
+                    </a>
+                </li>
+            </div>
+            <div class="bottom">
+                <li class="sidenav-nav-item" style="cursor: pointer;">
+                    <a class="sidenav-nav-link" (click)="openChangePasswordModal()" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: false}" matTooltip="Cambiar contraseña" [matTooltipPosition]="'right'">
+                        <i class="sidenav-link-icon fa fa-unlock-alt"></i>
+                        <span class="sidenav-link-text" *ngIf="collapsed">Cambiar Contraseña</span>
+                    </a>
+                </li>
+                <!-- <li class="sidenav-nav-item">
+                    <a class="sidenav-nav-link" routerLink="admins" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <i class="sidenav-link-icon fa-solid fa-users"></i>
+                        <span class="sidenav-link-text" *ngIf="collapsed">Administradores</span>
+                    </a>
+                </li> -->
+                <li class="sidenav-nav-item">
+                    <a class="sidenav-nav-link" routerLink="login" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}" (click)="logout()" matTooltip="Cerrar sesión" [matTooltipPosition]="'right'">
+                        <i class="sidenav-link-icon fa-solid fa-sign-out-alt"></i>
+                        <span class="sidenav-link-text" *ngIf="collapsed">Cerrar Sesión</span>
+                    </a>
+                </li>
+            </div>
+        </ng-container>
+    </ul>
+</div>
+
+<section class="navbar" [ngClass]="scrollFlag">
+    <nav class="navbar-container">
+
+        <a [routerLink]="['/requests']" class="logo-mobile">
+            <img src="assets/images/logo.png" alt="">
+        </a>
+        <div class="nav-mobile">
+            <div class="nav-elements-mobile">
+                <ul>
+                    <ng-container *ngFor="let item of navData; let i = index">
+                        <li [ngClass]="textColor"><a href="javascript:void(0)"
+                                [routerLink]="[item.routeLink]">{{item.label}}</a>
+                        </li>
+                    </ng-container>
+                    <ng-container>
+                        <li class="logout" (click)="logout()"><i class="sidenav-link-icon fa-solid fa-sign-out-alt"></i></li>
+                    </ng-container>
+                 
+                </ul>
+            </div>
+            <div class="nav-icon">
+                <a class="nav-menu-mobile">
+                    <img (click)="menu = !menu" src="assets/icons/menu-dark.png" alt="Menu">
+                </a>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<nav class="mobile-nav"[ngClass]="{ 'open-menu': menu }">
+    <div class="options-container">
+        <div class="content">
+
+            <div class="elements">
+                <button class="close" mat-icon-button (click)=" menu = !menu ">
+                    <!-- <img src="assets/icons/close.png" alt=""> -->
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="options">
+            <div class="img-container">
+                <a href="" class="logo" (click)=" menu = !menu " [routerLink]="['home']">
+                    <img src="assets/images/logo.png" alt="Logotipo">
+                </a>
+            </div>
+            <mat-action-list>
+                <button class="subtitle" *ngFor="let item of navData" mat-list-item (click)=" menu = !menu "
+                    [routerLink]="[item.routeLink]">{{item.label}}
+                </button>
+
+                <ng-container>
+                    <button class="subtitle" mat-list-item (click)=" menu = !menu; logout() "
+                    [routerLink]="['/logout']">Cerrar Sesión</button>
+                </ng-container>
+            </mat-action-list>
+        </div>
+    </div>
+</nav>
